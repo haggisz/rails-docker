@@ -50,11 +50,19 @@ Things you may want to cover:
     docker-compose run web rake db:create
 ## 8. Rebuild container
 - Container Gemfile.lock is synchronized with local Gemfile.lock
-    docker-compose run web bundle install
-‐　Build container
-    docker-compose up --build
+~~~
+docker-compose run web bundle install
+~~~
+- Build container
+~~~
+docker-compose up --build
+~~~
 - For avoiding cache problem
-    docker-compose build --no-cache
-    docker-compose up -d 
+~~~
+docker-compose build --no-cache
+~~~
+~~~
+docker-compose up -d
+~~~
   
     
