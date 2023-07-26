@@ -19,3 +19,9 @@ jobs:
         docker-compose build
         docker-compose run --rm web bin/setup
         docker-compose run --rm web rails test
+    - name: Compile with Webpacker
+      run: |
+        yarn upgrade
+        bundle exec rake webpacker:compile
+      env:
+        NODE_ENV: test 
