@@ -16,7 +16,8 @@ jobs:
 #         node-version: '16'
     - name: run test on docker-compose
       run: |
-        docker-compose build
+        docker-compose build --no-cache
+        docker-compose up -d
         docker-compose run --rm web bin/setup
         docker-compose run --rm web rails test
     - name: Compile with Webpacker
