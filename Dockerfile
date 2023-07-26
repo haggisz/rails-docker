@@ -11,7 +11,7 @@ WORKDIR /myapp
 # COPY .Gemfile.lock.cache /myapp
 # RUN bundle _2.4.10_ install
 
-COPY Gemfile Gemfile.lock /myapp
+COPY Gemfile Gemfile.lock /myapp/
 RUN bundle _2.4.10_ install
 RUN npm install -g yarn
 RUN yarn install
