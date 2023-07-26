@@ -19,9 +19,16 @@ WORKDIR /myapp
 
 COPY Gemfile Gemfile.lock /myapp/
 RUN bundle _2.4.10_ install
+
+
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+
 RUN npm install -g yarn
 RUN yarn install
 RUN bundle exec rails webpacker:install
+
 RUN bundle exec rails assets:precompile
 # RUN bundle exec rails webpacker:compile
 
