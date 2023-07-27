@@ -6,7 +6,7 @@ RUN apt-get update -qq && apt-get install -y \
   curl \
   nodejs \
   npm \
-&& npm install n -g && n 20.5.0 && rm -rf /var/lib/apt/lists/*
+&& npm install n yarn -g && n 20.5.0 && rm -rf /var/lib/apt/lists/*
 # RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 # RUN apt-get install -y nodejs
 
@@ -17,7 +17,7 @@ WORKDIR /myapp
 # COPY .Gemfile.lock.cache /myapp
 # RUN bundle _2.4.10_ install
 
-COPY Gemfile Gemfile.lock /myapp/
+COPY Gemfile Gemfile.lock package.json yarn.lock /myapp/
 RUN bundle _2.4.10_ install
 
 
@@ -25,11 +25,10 @@ COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 
-RUN npm install -g yarn
-RUN yarn install
-RUN bundle exec rails webpacker:install
+RUN NODE_ENV=development bundle exec rails webpacker:install && NODE_ENV=development bundle exec rails assets:precompile
+RUN yarn install && yarn add "@rails/webpacker@6.0.0.rc.6"
+# && yarn add webpack webpack-cli --dev && yarn run webpack
 
-RUN bundle exec rails assets:precompile
 # RUN bundle exec rails webpacker:compile
 
 COPY . /myapp
