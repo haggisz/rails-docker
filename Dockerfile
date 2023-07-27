@@ -25,11 +25,12 @@ COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 
-RUN NODE_ENV=development bundle exec rails webpacker:install && NODE_ENV=development bundle exec rails assets:precompile
-RUN yarn install && yarn add "@rails/webpacker@6.0.0.rc.6"
-# && yarn add webpack webpack-cli --dev && yarn run webpack
+RUN yarn install
+#  && yarn add "@rails/webpacker@6.0.0-rc.6"
+RUN bundle exec rails webpacker:install && bundle exec rails webpacker:compile
 
-# RUN bundle exec rails webpacker:compile
+# && yarn add webpack webpack-cli --dev && yarn run webpack
+# bundle exec rails assets:precompile
 
 COPY . /myapp
 # RUN bin/rails db:migrate RAILS_ENV=development
