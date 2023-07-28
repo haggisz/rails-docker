@@ -27,7 +27,7 @@ ENTRYPOINT ["entrypoint.sh"]
 
 RUN yarn install
 #  && yarn add "@rails/webpacker@6.0.0-rc.6"
-RUN bundle exec rails webpacker:install && bundle exec rails webpacker:compile
+RUN bundle && bundle exec rails webpacker:install && bundle exec rails webpacker:compile
 
 # && yarn add webpack webpack-cli --dev && yarn run webpack
 # bundle exec rails assets:precompile

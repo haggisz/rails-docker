@@ -35,6 +35,8 @@ default: &default
   extensions:
     - .mjs
     - .js
+    - .json
+    - .wasm
     - .sass
     - .scss
     - .css
@@ -70,7 +72,7 @@ development:
       'Access-Control-Allow-Origin': '*'
     watch_options:
       ignored: '**/node_modules/**'
-
+    # resolved_paths: ['source_path']
 
 test:
   <<: *default
@@ -83,8 +85,7 @@ production:
   <<: *default
 
   # Production depends on precompilation of packs prior to booting for performance.
-  compile: false
-
+  compile: true
   # Extract and emit a css file
   extract_css: true
 

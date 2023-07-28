@@ -5,7 +5,7 @@
     "@rails/actioncable": "^7.0.4-3",
     "@rails/activestorage": "^7.0.4-3",
     "@rails/ujs": "^7.0.4-3",
-    "@rails/webpacker": "6.0.0-rc.6",
+    "@rails/webpacker": "5.4.4",
     "turbolinks": "^5.2.0",
     "webpack": "^5.76.3",
     "webpack-cli": "^5.0.1"
@@ -23,7 +23,7 @@
     "babel-plugin-tester": "^10.0.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "cpy": "^8.1.1",
-    "kcd-scripts": "^7.1.0"
-
+    "core-js": "^3.29.1",
+    "@babel/plugin-proposal-private-methods": "^7.21.4-esm.2"
   }
 }

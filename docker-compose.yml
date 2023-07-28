@@ -5,6 +5,8 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=a
+    volumes:
+      - postgres:/var/lib/postgresql/data
   web:
     build: .
     command: >
@@ -15,6 +17,7 @@ services:
       "
     volumes:
       - .:/myapp
+      - bundle:/usr/local/bundle
     ports:
       - "3000:3000"
     depends_on:
@@ -27,6 +30,13 @@ services:
       NODE_ENV: development
       RAILS_ENV: development
       WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
-    command: ./bin/webpack-dev-server
+    volumes:
+      - .:/myapp
+      - node_modules:/myapp/node_modules
+    command: bash -c "rm -rf public/packs/* || true && bin/webpack-dev-server"
     ports:
       - '3035:3035'
+volumes:
+  node_modules:
+  postgres:
+  bundle:
