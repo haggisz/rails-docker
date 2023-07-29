@@ -1,17 +1,11 @@
 const { webpackConfig } = require('@rails/webpacker')
+const { merge } = require('webpack-merge')
 
 const baseConfig = {
   resolve: {
-    extensions: settings.extensions,
-    modules: [
-      resolve(settings.source_path),
-      'node_modules',
-      'app/javascript',
-      'app/javascript/__tests__',
-      'app/assets/images'
-    ]
+    extensions: ['.js', '.json', '.wasm']
   }
 }
-
-webpackConfig.config.merge(baseConfig)
+webpackConfig.merge(baseConfig)
+webpackConfig.merge({ devtool: 'none' })
 module.exports = webpackConfig
