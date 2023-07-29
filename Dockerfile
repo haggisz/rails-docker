@@ -6,7 +6,7 @@ RUN apt-get update -qq && apt-get install -y \
   curl \
   nodejs \
   npm \
-&& npm install n yarn -g && n 20.5.0 && rm -rf /var/lib/apt/lists/*
+&& npm install n yarn -g && n 20.5.0 && rm -rf /var/lib/apt/lists/* && apt-get purge nodejs
 # RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 # RUN apt-get install -y nodejs
 
@@ -18,7 +18,7 @@ WORKDIR /myapp
 # RUN bundle _2.4.10_ install
 
 COPY Gemfile Gemfile.lock package.json yarn.lock /myapp/
-RUN bundle _2.4.10_ install
+RUN bundle install
 
 
 COPY entrypoint.sh /usr/bin/
