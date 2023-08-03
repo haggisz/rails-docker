@@ -26,7 +26,7 @@ services:
       - db
     entrypoint: ./wait-for-it.sh db:3306
   wait:
-    image:willwill/wait-for-it
+    image: willwill/wait-for-it
 volumes:
   postgres:
   bundle:
