@@ -13,7 +13,9 @@ jobs:
       uses: actions/checkout@v2
       with:
         ref: ${{ github.event.pull_request.head.sha }}
-    - name: run test on docker-compose
-      run: |
-        COMPOSE_DOCKER_CLI_BUILD=1 docker-compose up --build
-        ./wait-for-it.sh db:3306 -- docker-compose run --rm web bin/setup && docker-compose run --rm web rails test
+    - name: docker-compose up
+      run: COMPOSE_DOCKER_CLI_BUILD=1 docker-compose up --build
+    - name: wait database
+      run: docker-compose run wait db:3306 --echo "Database is up"
+    - name: run tests
+      run: docker-compose run --rm web bin/setup && docker-compose run --rm web rails test
