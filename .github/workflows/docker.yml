@@ -16,4 +16,4 @@ jobs:
     - name: run test on docker-compose
       run: |
         COMPOSE_DOCKER_CLI_BUILD=1 docker-compose up --build
-        wait-for-it.sh db:3306 -- docker-compose run --rm web bin/setup && docker-compose run --rm web rails test
+        ./wait-for-it.sh db:3306 -- docker-compose run --rm web bin/setup && docker-compose run --rm web rails test
