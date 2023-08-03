@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # ruby '3.2-slim'
+gem 'jsbundling-rails', '~> 1.1.2'
 gem 'bundler', '~> 2.4.10'
 # Bundle edge Rails instead: gem 'rails', gitaaahub: 'rails/rails'
 gem 'rails', '~> 7.0.6'
@@ -12,7 +13,6 @@ gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '5.4.4'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

@@ -6,7 +6,7 @@ RUN apt-get update -qq && apt-get install -y \
   curl \
   nodejs \
   npm \
-&& npm install n yarn -g && n 20.5.0 && rm -rf /var/lib/apt/lists/* && apt-get purge -y nodejs
+&& npm install -g n yarn && n 20.5.0 && rm -rf /var/lib/apt/lists/*
 # RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 # RUN apt-get install -y nodejs
 
