@@ -7,6 +7,8 @@ services:
       - POSTGRES_PASSWORD=a
     volumes:
       - postgres:/var/lib/postgresql/data
+    ports:
+      - "3306:3306"
   web:
     build: .
     command: >
