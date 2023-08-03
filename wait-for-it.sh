@@ -65,7 +65,6 @@ wait_for_wrapper()
         echoerr "$WAITFORIT_cmdname: timeout occurred after waiting $WAITFORIT_TIMEOUT seconds for $WAITFORIT_HOST:$WAITFORIT_PORT"
     fi
 
-    bundle exec rails s -p 3000 -b '0.0.0.0';
     bundle exec rails db:create;
     bundle exec rails db:migrate RAILS_ENV=development;
 

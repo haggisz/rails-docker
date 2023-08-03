@@ -24,12 +24,6 @@ services:
       - db
   wait:
     image: willwill/wait-for-it:latest
-    command: >
-      bash -c "
-        ./wait-for-it.sh db:3306
-        bundle exec rails db:create;
-        bundle exec rails db:migrate RAILS_ENV=development;
-      "
 
 volumes:
   postgres:
