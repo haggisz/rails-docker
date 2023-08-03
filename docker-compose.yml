@@ -24,7 +24,7 @@ services:
       - db
   wait:
     image: willwill/wait-for-it:latest
-
+    command: ["./wait-for-it.sh", "db:3306"]
 volumes:
   postgres:
   bundle:
