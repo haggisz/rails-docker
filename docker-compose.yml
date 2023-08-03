@@ -14,8 +14,6 @@ services:
     command: >
       bash -c "
         bundle exec rails s -p 3000 -b '0.0.0.0';
-        bundle exec rails db:create;
-        bundle exec rails db:migrate RAILS_ENV=development;
       "
     volumes:
       - .:/myapp
@@ -24,9 +22,15 @@ services:
       - "3000:3000"
     depends_on:
       - db
-    entrypoint: ./wait-for-it.sh db:3306
   wait:
-    image: willwill/wait-for-it
+    image: willwill/wait-for-it:latest
+    entrypoint: ./wait-for-it.sh db:3306
+    command: >
+      bash -c "
+        bundle exec rails db:create;
+        bundle exec rails db:migrate RAILS_ENV=development;
+      "
+
 volumes:
   postgres:
   bundle:
