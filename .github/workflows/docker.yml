@@ -1,9 +1,9 @@
 name: "Ruby on Rails CI"
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main" , "docker"]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "docker" ]
 jobs:
   run-test:
     name: Run Test
@@ -16,6 +16,5 @@ jobs:
 #         node-version: '16'
     - name: run test on docker-compose
       run: |
-        docker-compose build
-        docker-compose run --rm web bin/setup
-        docker-compose run --rm web rails test
+        COMPOSE_DOCKER_CLI_BUILD=1 docker-compose up --build
+        ./wait-for-it.sh db:3306 -- docker-compose run --rm web bin/setup && docker-compose run --rm web rails test

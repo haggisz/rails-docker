@@ -1,0 +1,30 @@
+version: "3"
+services:
+  db:
+    image: postgres:12
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=a
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - "3306:3306"
+  web:
+    build: .
+    command: >
+      bash -c "
+        bundle exec rails s -p 3000 -b '0.0.0.0';
+        bundle exec rails db:create;
+        bundle exec rails db:migrate RAILS_ENV=development;
+      "
+    volumes:
+      - .:/myapp
+      - bundle:/usr/local/bundle
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    entrypoint: ./wait-for-it.sh db:3306
+volumes:
+  postgres:
+  bundle:
